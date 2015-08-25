@@ -17,4 +17,19 @@ class JobsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+
+  def find_job
+    @job = Job.find(params[:id])
+  end
+
 end

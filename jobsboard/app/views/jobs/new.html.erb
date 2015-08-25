@@ -1,4 +1,4 @@
-<%= simple_form_for @job do |form| %>
+<%= simple_form_for (@job, html: {class: 'form-horizontal'})do |form| %>
   <%= form.input :title, label: "Job title" %>
   <%= form.input :company, label: "Your company" %>
   <%= form.input :url, label: "Link to job" %>
