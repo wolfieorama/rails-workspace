@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  validates, :title, presence: true
-  validates, :company, presence: true
-  validates, :urls, presence:true, uniqueness :true 
+  validates :title, presence: true
+  validates :company, presence: true
+  validates :url, presence:true, uniqueness: true
 end
