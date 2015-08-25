@@ -1,6 +1,3 @@
-<%= simple_form_for(@job, html: {class: 'form-horizontal'}) do |form| %>
-  <%= form.input :title, label: "Job title", input_html: { class: "form-control" } %>
-  <%= form.input :company, label: "Your company", input_html: { class: "form-control" } %>
-  <%= form.input :url, label: "Link to job", input_html: { class: "form-control" } %>
-  <%= form.button :submit %>
-<% end %>
+<h1>New Job</h1>
+
+<%= render 'form' %>
