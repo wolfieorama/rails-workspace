@@ -3,5 +3,5 @@ class Job < ActiveRecord::Base
   validates :title, presence: true
   validates :company, presence: true
   validates :url, presence:true, uniqueness: true
-  paginates_per 3
+  paginates_per 5
 end

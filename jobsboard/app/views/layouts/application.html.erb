@@ -10,17 +10,18 @@
 
   <nav class = "navbar navbar-default" style="width: 1305px">
     <div class = "container">
-
+      <a href="#" class="navbar-brand">Janta</a>
       <ul class = "nav navbar-nav", display = "inline">
         <li><%= link_to "All Jobs", root_path %></li>
         <% Category.all.each do |category| %>
         <li><%= link_to category.name, jobs_path(category: category.name) %></li>
         <% end %>
+        <%= link_to "Add a job", new_job_path, class: "navbar-text navbar-right navbar-link" %>
         </ul>
     </div>
   </nav>
 
-<div class = "container", align = "center">
+<div id="main", class = "container">
 <%= yield %>
 </div>
 </body>
