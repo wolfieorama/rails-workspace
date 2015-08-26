@@ -1,10 +1,11 @@
 <h1>Jobs</h1>
-<% @job.each do |job| %>
+<% @jobs.each do |job| %>
   <div class="job">
     <h2><%= link_to job.title, job %></h2>
     <p><%= job.company %>
   </div>
 <% end %>
+<br>
+<p><%= paginate @jobs %></p>
+<br>
 <p><%= link_to "Add a job", new_job_path %></p>
-
-<p><%= paginate @job %></p>

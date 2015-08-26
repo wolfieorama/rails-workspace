@@ -3,7 +3,12 @@ class JobsController < ApplicationController
   before_action :find_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @job = Job.page(params[:page]).per(5)
+    if params[:category].blank?
+      @jobs = Job.order('created_at DESC').page params[:page]
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @jobs = Job.where(category_id: @category_id).page params[:page]
+    end
   end
 
   def new
@@ -14,7 +19,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
 
     if @job.save
-      redirect_to @job
+      redirect_to root_path
     else
       render 'new'
     end
