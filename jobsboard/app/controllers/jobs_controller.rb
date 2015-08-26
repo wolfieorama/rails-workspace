@@ -14,7 +14,7 @@ class JobsController < ApplicationController
     @job = Job.new(params.require(:job).permit(:title, :company, :url))
 
     if @job.save
-      redirect_to root_path
+      redirect_to @job
     else
       render 'new'
     end
@@ -24,9 +24,16 @@ class JobsController < ApplicationController
   end
 
   def update
+    if @job.update(params.require(:job).permit(:title, :company, :url))
+      redirect_to @job
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @job.destroy
+    redirect_to root_path
   end
 
   private
