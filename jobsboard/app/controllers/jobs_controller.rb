@@ -11,7 +11,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(params.require(:job).permit(:title, :company, :url))
+    @job = Job.new(job_params)
 
     if @job.save
       redirect_to @job
@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   end
 
   def update
-    if @job.update(params.require(:job).permit(:title, :company, :url))
+    if @job.update(job_params)
       redirect_to @job
     else
       render 'edit'
@@ -37,6 +37,10 @@ class JobsController < ApplicationController
   end
 
   private
+
+  def job_params
+    params.require(:job).permit(:title, :company, :url, :category_id)
+  end
 
   def find_job
     @job = Job.find(params[:id])
