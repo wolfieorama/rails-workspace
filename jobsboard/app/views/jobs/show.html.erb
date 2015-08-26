@@ -3,5 +3,5 @@
 <h1><%= @job.url %></h1>
 
 <%= link_to 'Home', root_path %>
-<%= link_to 'Edit', edit_job_path(@job) %>
+<%= link_to 'Edit', edit_job_path %>
 <%= link_to 'Delete', job_path, method: :delete, data: {confirm: "Are you sure ?"} %>
