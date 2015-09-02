@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
 
   before_action :find_job, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:[:index, :show]
 
   def index
     if params[:category].blank?

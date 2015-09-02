@@ -16,12 +16,14 @@
         <% Category.all.each do |category| %>
         <li><%= link_to category.name, jobs_path(category: category.name) %></li>
         <% end %>
+        <% if user_signed_in? %>
         <%= link_to "Add a job", new_job_path, class: "navbar-text navbar-right navbar-link" %>
+        <% end %>
       </ul>
       <ul class = "nav navbar-nav navbar-right", display = "inline">
 
         <% if user_signed_in? %>
-          <li><%= link_to current_user.email, edit_user_registration_path %></li> 
+          <li><%= link_to current_user.email, edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
