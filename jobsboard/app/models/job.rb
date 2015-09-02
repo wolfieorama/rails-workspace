@@ -4,4 +4,6 @@ class Job < ActiveRecord::Base
   validates :company, presence: true
   validates :url, presence:true, uniqueness: true
   paginates_per 5
+
+  belongs_to :user 
 end
