@@ -2,7 +2,7 @@
 <h2><%= @job.company %></h2>
 <h5><%= @job.url %></h5>
 
-<%= link_to 'Get this Job', @job.url,  class: "btn btn-default" %>
+<%= link_to 'Get this Job', @job.url,  id: "test", class: "btn btn-default" %>
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_job_path, class: "btn btn-default"  %>
 <%= link_to 'Delete', job_path, class: "btn btn-default",  method: :delete, data: {confirm: "Are you sure ?"} %>
