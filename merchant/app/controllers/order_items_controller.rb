@@ -2,21 +2,21 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
   before_action :load_order, only: [:create]
 
-  # GET /order_items
-  # GET /order_items.json
-  def index
-    @order_items = OrderItem.all
-  end
-
-  # GET /order_items/1
-  # GET /order_items/1.json
-  def show
-  end
-
-  # GET /order_items/new
-  def new
-    @order_item = OrderItem.new
-  end
+  # # GET /order_items
+  # # GET /order_items.json
+  # def index
+  #   @order_items = OrderItem.all
+  # end
+  #
+  # # GET /order_items/1
+  # # GET /order_items/1.json
+  # def show
+  # end
+  #
+  # # GET /order_items/new
+  # def new
+  #   @order_item = OrderItem.new
+  # end
 
   # GET /order_items/1/edit
   def edit
@@ -74,10 +74,11 @@ class OrderItemsController < ApplicationController
 
     # On load_order method to set order_item to 1
     def load_order
-  @order = Order.find_or_create_by_id(session[:order_id], status: "unsubmitted")
-    if @order.new_record?
-      @order.save!
-      session[:order_id] = @order.id
-    end
-  end
+      # @order = Order.find_or_create_by_id(session[:order_id], status: "unsubmitted")
+      @order = Order.where(id: session[:order_id]).first_or_initialize
+        if @order.new_record?
+          @order.save!
+          session[:order_id] = @order.id
+        end
+      end
 end
