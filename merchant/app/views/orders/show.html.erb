@@ -19,7 +19,10 @@
     <th>Quantity</th>
     <th>Unit Price</th>
     <th>Subtotal</th>
+
   </tr>
+
+
     <% @order.order_items.each do |item| %>
     <tr>
       <td><%= image_tag "products/#{item.product.image_url}" %></td>
@@ -29,4 +32,9 @@
       <td><%= print_price item.subtotal %></td>
     </tr>
     <% end %>
+
+    <th>Order total===========</th>
+    <td><%= print_price @order.total %></td>
+
+
 </table>
