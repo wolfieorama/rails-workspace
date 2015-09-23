@@ -25,8 +25,7 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order_item = OrderItem.new(product_id: params[:product_id], order_id: @order.id)
-
+    @order_item = @order.order_items.new(quantity: 1, product_id: params[:product_id])
     respond_to do |format|
       if @order_item.save
         format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
@@ -75,11 +74,10 @@ class OrderItemsController < ApplicationController
 
     # On load_order method to set order_item to 1
     def load_order
-      begin
-        @order = Order.find(session[:order_id])
-      rescue ActiveRecord::RecordNotFound
-        @order = Order.create(status: "unsubmitted")
-        session[:order_id] = @order.id
-      end
+  @order = Order.find_or_create_by_id(session[:order_id], status: "unsubmitted")
+    if @order.new_record?
+      @order.save!
+      session[:order_id] = @order.id
     end
+  end
 end
