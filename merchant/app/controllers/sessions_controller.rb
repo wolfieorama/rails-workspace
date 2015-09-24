@@ -1,5 +1,12 @@
 class SessionsController < ApplicationController
   def create
-    render text: request.env["omniauth.auth"]
+    @user = User.find_or_create_by_auth(request.env["omniauth.auth"])
+      session[:user_id] = @user.id
+    redirect_to products_path, notice: "logged in as "
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: "Goodbye!!"
   end
 end

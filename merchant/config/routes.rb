@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'products#index'
 
+  #callback url route
    match '/auth/:provider/callback', to: 'sessions#create', via: :get
+
+  #login and logout routes 
+   match "/login" => redirect("/auth/twitter"), as: :login, via: :get
+   match "/logout" => "sessions#destroy", as: :logout, via: :get
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
