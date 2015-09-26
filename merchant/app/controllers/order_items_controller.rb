@@ -71,18 +71,16 @@ class OrderItemsController < ApplicationController
       @order_item = OrderItem.find(params[:id])
     end
 
+    def load_order
+      @order = Order.where(id: session[:order_id], status: "unsubmitted", user_id: session[:user_id]).first_or_initialize
+        if @order.new_record?
+          @order.save!
+          session[:order_id] = @order.id
+        end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
       params.require(:order_item).permit(:product_id, :order_id, :quantity)
     end
 
-    # On load_order method to set order_item to 1
-    def load_order
-      # @order = Order.find_or_create_by_id(session[:order_id], status: "unsubmitted")
-      @order = Order.where(id: session[:order_id]).first_or_initialize
-        if @order.new_record?
-          @order.save!
-          session[:order_id] = @order.id
-        end
-      end
 end
