@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_many :ordrs
-  
+  has_many :orders
+  has_many :addresses
+
   def self.find_or_create_by_auth(auth_data)
     user = where(provider: auth_data[:provider], uid: auth_data[:uid]).first_or_create
     user.update(
