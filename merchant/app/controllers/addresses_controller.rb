@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
-    @address = Address.new
+    @address = current_user.addresses.new
   end
 
   # GET /addresses/1/edit
@@ -24,12 +24,12 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.json
   def create
-    @address = Address.new(address_params)
+    @address = current_user.addresses.new(address_params)
 
     respond_to do |format|
       if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
-        format.json { render :show, status: :created, location: @address }
+        format.html { redirect_to orders_path, notice: 'Address was successfully created.' }
+        format.json { redirect_to orders_path, status: :created, location: @address }
       else
         format.html { render :new }
         format.json { render json: @address.errors, status: :unprocessable_entity }
