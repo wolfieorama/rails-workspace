@@ -48,7 +48,11 @@
       </td>
     </tr>
 
+
 </table>
+
+  <%= f.submit "Submit order" %>
 <% end %>
+
 <%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>
 <%= link_to "Back to products", products_path %>

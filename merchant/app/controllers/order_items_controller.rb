@@ -4,9 +4,9 @@ class OrderItemsController < ApplicationController
 
   # # GET /order_items
   # # GET /order_items.json
-  # def index
-  #   @order_items = OrderItem.all
-  # end
+  def index
+    @order_items = OrderItem.all
+  end
   #
   # # GET /order_items/1
   # # GET /order_items/1.json
